@@ -1,6 +1,6 @@
 ### SOCIAL-MEDIA-APP
 
-Second project in Graphql roadmap.
+The #2 project in my Graphql roadmap.
 An app mimicing a social media platform
 
 ## TECH STACK
@@ -14,3 +14,5 @@ Jsonwebtoken
 Node
 Express
 ```
+## Tutorial
+freeCodeCamp <a href="https://www.youtube.com/watch?v=n1mdAPFq2Os&t=3923s">Youtube</a>
