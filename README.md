@@ -13,6 +13,8 @@ Graphql
 Jsonwebtoken
 Node
 Express
+MongoDB
+Mongoose
 ```
 ## Tutorial
 freeCodeCamp <a href="https://www.youtube.com/watch?v=n1mdAPFq2Os&t=3923s">Youtube</a>
