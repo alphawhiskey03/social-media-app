@@ -29,3 +29,19 @@ module.exports.validateRegisterInput = (
     valid: Object.keys(errors).length < 1,
   };
 };
+
+module.exports.validateLogin = (username, password) => {
+  let errors = {};
+  if (username.trim() === "") {
+    errors.username = "Invalid username";
+  }
+
+  if (password.trim === "") {
+    errors.password = "Invalid password";
+  }
+
+  return {
+    errors,
+    valid: Object.keys(errors).length < 1,
+  };
+};
