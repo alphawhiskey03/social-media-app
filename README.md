@@ -12,7 +12,6 @@ Apollo
 Graphql
 Jsonwebtoken
 Node
-Express
 MongoDB
 Mongoose
 ```
