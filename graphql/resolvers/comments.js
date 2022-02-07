@@ -29,11 +29,12 @@ module.exports = {
       const post = await Post.findById(postId);
       if (post) {
         const commentIndex = post.comments.findIndex((c) => c.id === commentId);
-        console.log(post.comments[commentIndex].username);
-        console.log(user.username);
+
         if (post.comments[commentIndex].username === user.username) {
-          console.log("hi");
+          post.comments.splice(commentIndex, 1);
         }
+        await post.save();
+        return "Comment deleted";
       }
     },
   },
