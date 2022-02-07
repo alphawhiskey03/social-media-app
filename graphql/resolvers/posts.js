@@ -5,7 +5,7 @@ module.exports = {
   Query: {
     getPosts: async () => {
       try {
-        const posts = Post.find({}).sort({ createAt: -1 });
+        const posts = await Post.find({}).sort({ createAt: -1 });
         return posts;
       } catch (err) {
         console.log(err);
@@ -14,6 +14,7 @@ module.exports = {
     getPost: async (parent, { id }, context) => {
       try {
         const post = await Post.findOne({ _id: id });
+
         if (post) {
           return post;
         }
@@ -32,9 +33,7 @@ module.exports = {
         createdAt: new Date().toISOString(),
       });
       const post = await newPost.save();
-      context.pubsub.publish("NEW_POST", {
-        newPost: post,
-      });
+
       return post;
     },
     deletePost: async (_, { id }, context) => {
@@ -65,11 +64,6 @@ module.exports = {
 
         return post;
       }
-    },
-  },
-  Subscription: {
-    newPost: {
-      subscibe: (_, __, { pubsub }) => pubsub.asyncIterator("NEW_POST"),
     },
   },
 };
