@@ -7,7 +7,7 @@ An app mimicing a social media platform
 
 ```
 React
-Semantic-UI
+MUI
 Apollo
 Graphql
 Jsonwebtoken
