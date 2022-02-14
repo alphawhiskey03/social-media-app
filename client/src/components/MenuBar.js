@@ -8,10 +8,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../context/auth";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
 export default function MenuBar() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { user, logout } = React.useContext(AuthContext);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -40,7 +42,7 @@ export default function MenuBar() {
             <MenuIcon />
           </IconButton> */}
           <Typography
-            variant="h6"
+            variant="h4"
             component="div"
             sx={{ flexGrow: 1 }}
             onClick={() => {
@@ -50,9 +52,9 @@ export default function MenuBar() {
             color="text.primary"
             style={{ cursor: "pointer" }}
           >
-            Home
+            <AcUnitIcon />
           </Typography>
-
+          <Typography>{user && user.username ? user.username : ""}</Typography>
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -67,33 +69,48 @@ export default function MenuBar() {
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: "top",
+              vertical: "bottom",
               horizontal: "right",
             }}
             keepMounted
             transformOrigin={{
-              vertical: "top",
+              vertical: "bottom",
               horizontal: "right",
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem
-              onClick={() => {
-                navigate("/register");
-                setAnchorEl(null);
-              }}
-            >
-              Register
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                navigate("/login");
-                setAnchorEl(null);
-              }}
-            >
-              Login
-            </MenuItem>
+            {user ? (
+              <>
+                <MenuItem
+                  onClick={() => {
+                    logout();
+                    setAnchorEl(null);
+                  }}
+                >
+                  logout
+                </MenuItem>
+              </>
+            ) : (
+              <>
+                <MenuItem
+                  onClick={() => {
+                    navigate("/register");
+                    setAnchorEl(null);
+                  }}
+                >
+                  Register
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    navigate("/login");
+                    setAnchorEl(null);
+                  }}
+                >
+                  Login
+                </MenuItem>
+              </>
+            )}
           </Menu>
         </Toolbar>
       </AppBar>
