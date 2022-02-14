@@ -4,6 +4,8 @@ import { gql, useMutation } from "@apollo/client";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import PopAlert from "../../components/popAlert";
+import { useForm } from "../../hooks/hooks";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   Paper: {
@@ -38,21 +40,19 @@ const Register = () => {
   const classes = useStyles();
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
-  const [values, setValues] = useState({
+  const navigate = useNavigate();
+  const { onChange, onSubmit, values } = useForm(userRegister, {
     username: "",
     password: "",
     confirmPassword: "",
     email: "",
   });
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
   const [addUser, { data, loading, error, called }] = useMutation(
     REGISTER_USER,
     {
       update(_, { data: { register: userData } }) {
         context.login(userData);
+        navigate("/");
       },
       onError(err) {
         setErrors(err.graphQLErrors[0].extensions);
@@ -62,12 +62,16 @@ const Register = () => {
       },
     }
   );
-  const onSubmit = (e) => {
-    console.log(values);
-    e.preventDefault();
-    addUser();
-    console.log(error);
-  };
+  function userRegister(e) {
+    if (
+      values.username.length > 0 &&
+      values.password.length > 0 &&
+      values.confirmPassword.length > 0 &&
+      values.email.length > 0
+    ) {
+      addUser();
+    }
+  }
 
   return (
     <>
