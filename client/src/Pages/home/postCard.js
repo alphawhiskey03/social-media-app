@@ -6,6 +6,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import moment from "moment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
+import AddPost from "./addPost";
 import {
   Grid,
   CardHeader,
@@ -13,10 +14,18 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { AuthContext } from "../../context/auth";
+import { useContext } from "react";
 
 const PostCard = ({ posts }) => {
+  const { user } = useContext(AuthContext);
   return (
     <Grid container spacing={2}>
+      {user && (
+        <Grid item md={4} xs={12}>
+          <AddPost />
+        </Grid>
+      )}
       {posts &&
         posts.map((post) => (
           <Grid item md={4} xs={12} key={post.body}>
@@ -48,7 +57,6 @@ const PostCard = ({ posts }) => {
                 title={post.username}
                 subheader={moment(post.createdAt).fromNow(true)}
               />
-              <hr />
               <CardContent>
                 <div style={{ marginTop: 5 }}>
                   <Typography>{post.body}</Typography>
