@@ -1,10 +1,18 @@
-import { Paper, TextField, Container, Button, Typography } from "@mui/material";
+import {
+  Paper,
+  TextField,
+  Container,
+  Button,
+  Typography,
+  Link,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { gql, useMutation } from "@apollo/client";
 import { useState, useContext } from "react";
 import PopAlert from "../../components/popAlert";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
+import { useForm } from "../../hooks/hooks";
 const useStyles = makeStyles({
   Paper: {
     backgroundColor: "#e8f4fd",
@@ -38,15 +46,14 @@ const LOGIN_USER = gql`
 const Login = () => {
   const classes = useStyles();
   const context = useContext(AuthContext);
-  const [values, setValues] = useState({
+  const [errors, setErrors] = useState({});
+  const { onChange, onSubmit, values } = useForm(userLogin, {
     username: "",
     password: "",
   });
-  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [login, { data, loading, error, called }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
-      console.log(userData);
       context.login(userData);
       navigate("/");
     },
@@ -58,14 +65,9 @@ const Login = () => {
       loginInput: values,
     },
   });
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
+  function userLogin() {
     login();
-  };
+  }
   return (
     <>
       <Container align="center" justify="center">
@@ -98,7 +100,6 @@ const Login = () => {
             submit
           </Button>
         </Paper>
-        <PopAlert errors={errors} />
       </Container>
     </>
   );
