@@ -8,7 +8,7 @@ module.exports = {
         const posts = await Post.find({}).sort({ createAt: -1 });
         return posts;
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     },
     getPost: async (parent, { id }, context) => {
@@ -26,6 +26,9 @@ module.exports = {
   Mutation: {
     createPost: async (_, { body }, context) => {
       const user = checkAuth(context);
+      if (body.trim() === "") {
+        throw new Error("The body of the post cannot be empty");
+      }
       const newPost = new Post({
         body,
         user: user.id,
