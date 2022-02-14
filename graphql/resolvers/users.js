@@ -68,13 +68,18 @@ module.exports = {
     login: async (parent, { loginInput: { username, password } }) => {
       const { errors, valid } = validateLogin(username, password);
       const user = await User.findOne({ username });
+      if (!valid) {
+        throw new UserInputError("Erros", { errors });
+      }
       if (!user) {
-        errors.general = "User not found";
+        errors.username = "User not found";
         throw new UserInputError("Error", { errors });
       }
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
-        errors.general = "Invalid credentials";
+        errors.password = "Invalid credentials";
+        // console.log(errors);
+
         throw new UserInputError("Error", { errors });
       }
       const token = generateToken(user.email, user.id, user.username);
