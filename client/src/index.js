@@ -9,16 +9,17 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "apollo-link-context";
+import { API_URI } from "./config";
 const authLink = setContext((req) => {
   const token = localStorage.getItem("jwtToken");
   return {
-    header: {
+    headers: {
       Authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
 const httpLink = createHttpLink({
-  uri: "http://localhost:3002/",
+  uri: API_URI,
 });
 
 console.log(authLink.concat(httpLink));
