@@ -34,7 +34,7 @@ module.exports = {
           post.comments.splice(commentIndex, 1);
         }
         await post.save();
-        return "Comment deleted";
+        return post;
       }
     },
   },
