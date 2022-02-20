@@ -13,6 +13,7 @@ import PopAlert from "../../components/popAlert";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 import { useForm } from "../../hooks/hooks";
+import { Colors } from "../../utils/theme";
 const useStyles = makeStyles({
   Paper: {
     backgroundColor: "#e8f4fd",
@@ -71,29 +72,42 @@ const Login = () => {
   return (
     <>
       <Container align="center" justify="center">
-        <Paper className={classes.Paper} elevation={5}>
+        <Paper
+          className={classes.Paper}
+          style={{ backgroundColor: Colors.primary }}
+          elevation={5}
+        >
           <Typography variant="h5" align="left">
             LOGIN
           </Typography>
           <TextField
-            className={classes.TextField}
+            style={{
+              marginTop: 15,
+              maxWidth: 400,
+            }}
             label="Username"
             name="username"
             type="text"
-            color={errors && errors.username ? "error" : "info"}
+            color={errors && errors.username ? "error" : "secondary"}
             onChange={onChange}
           />
           <TextField
-            className={classes.TextField}
+            style={{
+              marginTop: 15,
+              maxWidth: 400,
+            }}
             label="Password"
             name="password"
             type="password"
-            color={errors && errors.password ? "error" : "info"}
+            color={errors && errors.password ? "error" : "secondary"}
             onChange={onChange}
           />
           <Button
-            className={classes.Button}
-            color="info"
+            style={{
+              marginTop: 15,
+              maxWidth: 400,
+            }}
+            color="secondary"
             variant="contained"
             onClick={onSubmit}
           >
