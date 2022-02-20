@@ -6,21 +6,24 @@ import Login from "./Pages/login/login";
 import Layout from "./components/Layout";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AuthProvider } from "./context/auth";
-
+import Post from "./Pages/post/post";
+import { Colors } from "./utils/theme";
 const theme = createTheme({
   typography: {
     fontFamily: `'Roboto', sans-serif`,
+    a: {
+      fontFamily: "'Creepster', cursive",
+    },
   },
-  mode: "dark",
   palette: {
     primary: {
-      main: "#bbdefb",
+      main: Colors.primary,
     },
     secondary: {
-      main: "#e8f4fd",
+      main: Colors.secondary,
     },
     text: {
-      primary: "#093170",
+      primary: Colors.text.primary,
     },
   },
 });
@@ -35,6 +38,8 @@ function App() {
                 <Route path={"/"} element={<Home />} />
                 <Route path={"register"} element={<Register />} />
                 <Route exact path={"/login"} element={<Login />} />
+                <Route path="post/:postId" element={<Post />} />
+                <Route path="post/:postId/:cmd" element={<Post />} />
               </Routes>
             </Layout>
           </Router>
