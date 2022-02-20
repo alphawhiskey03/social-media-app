@@ -1,27 +1,9 @@
 import Typography from "@mui/material/Typography";
-import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import PostCard from "./postCard";
-const FETCH_POST_QUERY = gql`
-  query {
-    getPosts {
-      body
-      username
-      createdAt
-      likeCount
-      likes {
-        username
-      }
-      commentCount
-      comments {
-        username
-        body
-      }
-    }
-  }
-`;
+import { FETCH_POST_QUERY } from "../../utils/graphql";
 
 const Home = () => {
   const { error, loading, data } = useQuery(FETCH_POST_QUERY);
@@ -35,7 +17,7 @@ const Home = () => {
     <>
       <Typography
         variant={"h5"}
-        align="center"
+        align="left"
         color="text.primary"
         style={{ marginBottom: 20 }}
       >
