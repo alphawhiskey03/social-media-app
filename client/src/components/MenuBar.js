@@ -9,10 +9,26 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
-export default function MenuBar() {
+import { makeStyles } from "@mui/styles";
+import { Colors } from "../utils/theme";
+import { ListItemText, ListItemIcon } from "@mui/material";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+const useStyles = makeStyles({
+  paper: {
+    "& .MuiMenu-paper": {
+      backgroundColor: Colors.secondary,
+    },
+    "& .MuiMenu-list": {
+      color: Colors.primary,
+    },
+  },
+});
+export default function MenuBar({ theme }) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const classes = useStyles();
   const { user, logout } = React.useContext(AuthContext);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,7 +42,7 @@ export default function MenuBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        color="secondary"
+        color="primary"
         style={{
           borderBottom: "none",
         }}
@@ -49,10 +65,10 @@ export default function MenuBar() {
               navigate("/");
               setAnchorEl(null);
             }}
-            color="text.primary"
+            color="secondary"
             style={{ cursor: "pointer" }}
           >
-            <AcUnitIcon />
+            <Typography variant="h6">[R I C K - E D]</Typography>
           </Typography>
           <Typography>{user && user.username ? user.username : ""}</Typography>
           <IconButton
@@ -79,27 +95,32 @@ export default function MenuBar() {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            className={classes.paper}
           >
             {user ? (
-              <>
-                <MenuItem
-                  onClick={() => {
-                    logout();
-                    setAnchorEl(null);
-                  }}
-                >
-                  logout
-                </MenuItem>
-              </>
+              <MenuItem
+                onClick={() => {
+                  logout();
+                  setAnchorEl(null);
+                }}
+              >
+                <ListItemIcon>
+                  <LogoutIcon color="primary" size={"small"} />
+                </ListItemIcon>
+                <ListItemText>logout</ListItemText>
+              </MenuItem>
             ) : (
-              <>
+              <div>
                 <MenuItem
                   onClick={() => {
                     navigate("/register");
                     setAnchorEl(null);
                   }}
                 >
-                  Register
+                  <ListItemIcon>
+                    <AppRegistrationIcon color="primary" size={"small"} />
+                  </ListItemIcon>
+                  <ListItemText>Register</ListItemText>
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -107,9 +128,12 @@ export default function MenuBar() {
                     setAnchorEl(null);
                   }}
                 >
-                  Login
+                  <ListItemIcon>
+                    <LogoutIcon color="primary" size={"small"} />
+                  </ListItemIcon>
+                  <ListItemText>Login</ListItemText>
                 </MenuItem>
-              </>
+              </div>
             )}
           </Menu>
         </Toolbar>
