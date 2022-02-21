@@ -5,6 +5,8 @@ export const FETCH_POST_QUERY = gql`
     getPosts {
       id
       body
+      imageUrl
+      imageName
       username
       createdAt
       likeCount
