@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
   CardHeader,
+  CardMedia,
   Avatar,
   IconButton,
   TextField,
@@ -90,8 +91,11 @@ const Post = (props) => {
     <>
       <Grid container spacing={1}>
         <Grid item>
-          <Paper style={{ padding: 10, borderRadius: 5 }}>
-            <img src="../../logo512.png" style={{ height: 100, width: 100 }} />
+          <Paper style={{ borderRadius: 5 }}>
+            <img
+              src="https://i.pinimg.com/originals/7b/aa/25/7baa252dbdfeed669c152bedd2fa5feb.jpg"
+              style={{ height: 80, width: 80 }}
+            />
           </Paper>
         </Grid>
         {post && (
@@ -113,6 +117,14 @@ const Post = (props) => {
                   subheader={moment(post.createdAt).fromNow(true)}
                   className={classes.cardHeader}
                 />
+
+                {post.imageUrl && (
+                  <CardMedia
+                    component="img"
+                    height="240"
+                    image={post.imageUrl}
+                  />
+                )}
                 <CardContent>
                   <div style={{ marginTop: 5 }}>
                     <Link to={`/post/${post.id}`} className={classes.body}>
@@ -214,6 +226,8 @@ const GET_POST_QUERY = gql`
       id
       username
       body
+      imageUrl
+      imageName
       likes {
         username
         id
@@ -237,6 +251,8 @@ const ADD_COMMENT_MUTATION = gql`
       id
       username
       body
+      imageUrl
+      imageName
       likes {
         username
         id
