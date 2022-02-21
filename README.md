@@ -1,7 +1,7 @@
 ### SOCIAL-MEDIA-APP
 
 <div>
-<a href="#overview">Overview</a>|<a href="#tech_stack">Tech stack</a> |<a href="#reference">Reference</a>
+<a href="#overview">Overview</a> | <a href="#tech_stack">Tech stack</a> | <a href="#reference">Reference</a>
 </div>
 
 ## Overview
