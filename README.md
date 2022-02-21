@@ -3,7 +3,8 @@
 
 ## Overview
 
-<div id="overview">
+<div id="overview"></div>
+
 The #2 project in my Graphql roadmap ,
 This is a react application with a graphql server.
 
@@ -16,9 +17,9 @@ User authentication is managed with <a href="https://www.npmjs.com/package/jsonw
 The database used is <a href="https://www.mongodb.com/" target="_blank">MongoDB</a> with <a href="https://mongoosejs.com/" target="_blank">mongoose</a> as ODM (Object data model).
 The data is served with <a href="https://www.apollographql.com/docs/apollo-server/" target="_blank"> Apollo-server</a> which is one of the commonly used GraphQL server.
 
-</div>
 ## TECH STACK
-<div id="tech_stack">
+
+<div id="tech_stack"></div>
   
 ```
 React
@@ -32,8 +33,8 @@ MongoDB
 Mongoose
 ```
 
-</div>
 ## Reference
-<div id="reference">
+
+<div id="reference"></div>
+
 freeCodeCamp <a href="https://www.youtube.com/watch?v=n1mdAPFq2Os&t=3923s">Youtube</a>
-</div>
