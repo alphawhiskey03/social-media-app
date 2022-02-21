@@ -4,20 +4,18 @@ import {
   Container,
   Button,
   Typography,
-  Link,
+  useMediaQuery,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { gql, useMutation } from "@apollo/client";
 import { useState, useContext } from "react";
-import PopAlert from "../../components/popAlert";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 import { useForm } from "../../hooks/hooks";
 import { Colors } from "../../utils/theme";
 const useStyles = makeStyles({
   Paper: {
     backgroundColor: "#e8f4fd",
-    width: 400,
     padding: 20,
     display: "flex",
     flexDirection: "column",
@@ -48,6 +46,7 @@ const Login = () => {
   const classes = useStyles();
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
+  const matches = useMediaQuery("(max-width:600px)");
   const { onChange, onSubmit, values } = useForm(userLogin, {
     username: "",
     password: "",
@@ -74,7 +73,10 @@ const Login = () => {
       <Container align="center" justify="center">
         <Paper
           className={classes.Paper}
-          style={{ backgroundColor: Colors.primary }}
+          style={{
+            backgroundColor: Colors.primary,
+            width: matches ? 300 : 400,
+          }}
           elevation={5}
         >
           <Typography variant="h5" align="left">
@@ -113,6 +115,9 @@ const Login = () => {
           >
             submit
           </Button>
+          <Typography variant="body2" style={{ marginTop: 10 }}>
+            Don't have an account? <Link to="/register">Register</Link>
+          </Typography>
         </Paper>
       </Container>
     </>
