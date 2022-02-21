@@ -2,6 +2,8 @@ const { model, Schema } = require("mongoose");
 
 const postSchema = new Schema({
   body: String,
+  imageUrl: String,
+  imageName: String,
   username: String,
   createdAt: String,
   comments: [
