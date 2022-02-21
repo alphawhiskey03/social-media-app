@@ -20,7 +20,7 @@ The data is served with <a href="https://www.apollographql.com/docs/apollo-serve
 
 </div>
 ## TECH STACK
-<div id="tech_stack>
+<div id="tech_stack">
 ```
 React
 MUI
