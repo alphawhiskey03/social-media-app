@@ -1,7 +1,7 @@
 ### SOCIAL-MEDIA-APP
 
 <div>
-<a href="#overview">Overview</a> | <a href="#tech_stack">Tech stack</a> | <a href="#reference">Reference</a>
+<a href="#overview">Overview</a> | <a href="#tech_stack">Tech stack</a> | <a href="#reference">Reference</a> | <a href="#preview">Preview</a>
 </div>
 
 ## Overview
@@ -35,6 +35,26 @@ Node
 MongoDB
 Mongoose
 ```
+
+## Preview
+
+<div id="preview"></div>
+
+# Home page
+
+<img src="./preview/login.png"/>
+
+# Login page
+
+<img src="./preview/login.png"/>
+
+# Register page
+
+<img src="./preview/login.png"/>
+
+# Post page
+
+<img src="./preview/login.png"/>
 
 ## Reference
 
