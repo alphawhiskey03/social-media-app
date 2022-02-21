@@ -13,7 +13,8 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { makeStyles } from "@mui/styles";
 import { gql, useMutation } from "@apollo/client";
 import { FETCH_POST_QUERY } from "../utils/graphql";
-import { getTypenameFromStoreObject } from "@apollo/client/cache/inmemory/helpers";
+import FireBaseStorage from "../utils/firebase";
+import { ref, deleteObject } from "firebase/storage";
 import { Colors } from "../utils/theme";
 const useStyles = makeStyles({
   deleteButton: {
@@ -27,9 +28,7 @@ const useStyles = makeStyles({
     },
   },
 });
-const DeleteButton = ({ postId, commentId, callBack }) => {
-  console.log("commentId", commentId);
-  console.log("postId", postId);
+const DeleteButton = ({ postId, commentId, callBack, imageName }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION;
@@ -40,9 +39,7 @@ const DeleteButton = ({ postId, commentId, callBack }) => {
           callBack();
         }
         const data = proxy.readQuery({ query: FETCH_POST_QUERY });
-        console.log(data);
         let getPosts = data.getPosts.filter((d) => d.id !== postId);
-        console.log(getPosts);
         proxy.writeQuery({ query: FETCH_POST_QUERY, data: { getPosts } });
         setOpen(false);
       } else setOpen(false);
@@ -51,7 +48,18 @@ const DeleteButton = ({ postId, commentId, callBack }) => {
   });
   const onDelete = (e) => {
     e.preventDefault();
-    deletePost();
+    console.log(imageName);
+    if (imageName) {
+      console.log("hi", imageName);
+      const imageRef = ref(FireBaseStorage, `image/${imageName}`);
+      deleteObject(imageRef)
+        .then(() => {
+          deletePost();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else deletePost();
   };
 
   return (
@@ -82,10 +90,14 @@ const DeleteButton = ({ postId, commentId, callBack }) => {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button color="secondary" onClick={() => setOpen(false)}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setOpen(false)}
+          >
             No
           </Button>
-          <Button color="secondary" onClick={onDelete}>
+          <Button variant="contained" color="secondary" onClick={onDelete}>
             Yes
           </Button>
         </DialogActions>
