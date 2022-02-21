@@ -1,4 +1,11 @@
-import { Paper, TextField, Container, Button, Typography } from "@mui/material";
+import {
+  Paper,
+  TextField,
+  Container,
+  Button,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { gql, useMutation } from "@apollo/client";
 import { useContext, useState } from "react";
@@ -7,10 +14,10 @@ import PopAlert from "../../components/popAlert";
 import { useForm } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { Colors } from "../../utils/theme";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   Paper: {
-    width: 400,
     padding: 20,
     display: "flex",
     flexDirection: "column",
@@ -41,6 +48,7 @@ const Register = () => {
   const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const matches = useMediaQuery("(max-width:600px)");
   const { onChange, onSubmit, values } = useForm(userRegister, {
     username: "",
     password: "",
@@ -79,7 +87,10 @@ const Register = () => {
       <Container align="center" justify="center">
         <Paper
           className={classes.Paper}
-          style={{ backgroundColor: Colors.primary }}
+          style={{
+            backgroundColor: Colors.primary,
+            width: matches ? 300 : 400,
+          }}
           elevation={5}
         >
           <Typography variant="h5" align="left">
@@ -145,6 +156,9 @@ const Register = () => {
           >
             {loading ? "loading..." : "submit"}
           </Button>
+          <Typography variant="body2" style={{ marginTop: 10 }}>
+            already have an account? <Link to="/login">login</Link>
+          </Typography>
         </Paper>
         <PopAlert errors={errors} />
       </Container>
