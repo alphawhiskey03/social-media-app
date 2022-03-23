@@ -42,7 +42,7 @@ Mongoose
 
 # Home page
 
-<img src="./preview/login.png"/>
+<img src="./preview/home.png"/>
 
 # Login page
 
@@ -50,11 +50,11 @@ Mongoose
 
 # Register page
 
-<img src="./preview/login.png"/>
+<img src="./preview/register.png"/>
 
 # Post page
 
-<img src="./preview/login.png"/>
+<img src="./preview/post.png"/>
 
 ## Reference
 
