@@ -26,6 +26,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import DeleteButton from "../../components/deleteButton";
 import { useForm } from "../../hooks/hooks";
 import { Colors } from "../../utils/theme";
+import { useMediaQuery } from "@mui/material";
 
 const useStyles = makeStyles({
   deleteButton: {
@@ -52,6 +53,7 @@ const useStyles = makeStyles({
 
 const Post = (props) => {
   const { postId, cmd } = useParams();
+  const matches = useMediaQuery("(max-width:600px)");
 
   const { user } = useContext(AuthContext);
   const [post, setPost] = useState();
@@ -100,7 +102,7 @@ const Post = (props) => {
         </Grid>
         {post && (
           <>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Card
                 className={classes.Card}
                 style={{ backgroundColor: Colors.primary }}
@@ -158,7 +160,7 @@ const Post = (props) => {
                   variant="outlined"
                   label="Add your comment"
                   color="secondary"
-                  style={{ width: "90%" }}
+                  style={{ width: matches ? "80%" : "90%" }}
                   value={values.body}
                   name="body"
                   inputRef={commentRef}
@@ -170,6 +172,14 @@ const Post = (props) => {
                   <SendIcon />
                 </IconButton>
               </Card>
+            </Grid>
+            <Grid item sm={5} xs={12}>
+              <Typography
+                color="text.primary"
+                style={{ paddingBottom: "10px", paddingLeft: "2px" }}
+              >
+                Previous comments
+              </Typography>
 
               {post.comments.map((comment, i) => (
                 <Card
