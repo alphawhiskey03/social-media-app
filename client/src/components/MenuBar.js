@@ -13,7 +13,6 @@ import { makeStyles } from "@mui/styles";
 import { Colors } from "../utils/theme";
 import { ListItemText, ListItemIcon } from "@mui/material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
-import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 const useStyles = makeStyles({
   paper: {
