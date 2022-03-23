@@ -77,8 +77,9 @@ const Post = (props) => {
     },
   });
 
-  function addCommentCallback(e) {
-    e.preventDefault();
+  function addCommentCallback() {
+    console.log("clicked");
+    if (!user) return navigate("/login");
     addComment();
   }
 
@@ -168,7 +169,7 @@ const Post = (props) => {
                   size="small"
                   onChange={onChange}
                 />
-                <IconButton color="secondary" size="small" onClick={addComment}>
+                <IconButton color="secondary" size="small" onClick={onSubmit}>
                   <SendIcon />
                 </IconButton>
               </Card>
