@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import PostCard from "./postCard";
 import { FETCH_POST_QUERY } from "../../utils/graphql";
+import Loader from "../../components/loader";
 
 const Home = () => {
   const { error, loading, data } = useQuery(FETCH_POST_QUERY);
@@ -13,6 +14,7 @@ const Home = () => {
       setPosts(data.getPosts);
     }
   }, [data]);
+  if (loading) return <Loader />;
   return (
     <>
       <Typography
