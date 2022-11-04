@@ -1,7 +1,7 @@
 ### SOCIAL-MEDIA-APP
 
 <div>
-<a href="#overview">Overview</a> | <a href="#tech_stack">Tech stack</a> | <a href="#reference">Reference</a> | <a href="#preview">Preview</a>
+<a href="#overview">Overview</a> | <a href="#tech_stack">Tech stack</a> | <a href="#website-link">Webiste link</a> | <a href="#preview">Preview</a>
 </div>
 
 ## Overview
@@ -52,6 +52,6 @@ Netlify
 
 ## Reference
 
-<div id="reference"></div>
+<div id="website-link"></div>
 
-freeCodeCamp <a href="https://www.youtube.com/watch?v=n1mdAPFq2Os&t=3923s">Youtube</a>
+freeCodeCamp <a href="https://ricked.netlify.app/">Youtube</a>
