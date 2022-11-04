@@ -54,4 +54,4 @@ Netlify
 
 <div id="website-link"></div>
 
-<a href="https://ricked.netlify.app/">Link</a>
+<a href="https://ricked.netlify.app/">[Link](https://ricked.netlify.app/)</a>
