@@ -50,8 +50,8 @@ Netlify
 
 <img src="./preview/post.png"/>
 
-## Reference
+## Website link
 
 <div id="website-link"></div>
 
-freeCodeCamp <a href="https://ricked.netlify.app/">Youtube</a>
+<a href="https://ricked.netlify.app/">Link</a>
