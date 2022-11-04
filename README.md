@@ -26,6 +26,8 @@ Jsonwebtoken
 Node
 MongoDB
 Mongoose
+Heroku
+Netlify
 ```
 
 ## Preview
